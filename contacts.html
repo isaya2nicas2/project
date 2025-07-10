@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Child Protection</title>
+    <style>
+        /* Re-use your main styling for consistency */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: black;
+            background-image: linear-gradient(to right, black, rgb(97, 163, 216), #800080, pink);
+            font-family: Arial, sans-serif;
+            color: #fff;
+            /* Adjust margin-top to account for the fixed header */
+            margin-top: 100px; /* Assuming your header height is around 100px */
+        }
+
+        /* Header Styling (copy from your main page) */
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background-color: rgba(0, 0, 0, 0.4);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .logo-link img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #fff;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .logo-link img:hover {
+            transform: scale(1.05);
+        }
+
+        .main-nav {
+            display: flex;
+            gap: 50px; /* Consistent gap for all links in the header */
+        }
+
+        .main-nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1em;
+            padding: 10px 20px;
+            border-radius: 8px;
+            background-color: #800080;
+            position: relative;
+            overflow: hidden;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .main-nav a:hover {
+            background-color: #a000a0;
+            transform: translateY(-2px);
+        }
+
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 3px;
+            background-color: white;
+            transition: width 0.3s ease-out;
+        }
+
+        .main-nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Main Content Styling for Contact Page */
+        .contact-content {
+            flex-grow: 1;
+            padding: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            line-height: 1.6;
+            display: flex; /* Use flexbox to arrange sections */
+            flex-direction: column;
+            gap: 30px; /* Space between sections */
+        }
+
+        .contact-content h1 {
+            font-size: 3.5em;
+            text-align: center;
+            margin-bottom: 20px; /* Reduced margin for top heading */
+            color: #fff;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        .contact-content h2 {
+            font-size: 2em;
+            color: #a000a0;
+            margin-top: 0; /* No top margin as gap handles spacing */
+            margin-bottom: 15px;
+            border-bottom: 2px solid #a000a0;
+            padding-bottom: 5px;
+        }
+
+        .contact-info p {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        .contact-info a {
+            color: lightblue;
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* Contact Form Styling */
+        .contact-form form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-form label {
+            font-size: 1.1em;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent input fields */
+            color: #fff;
+            font-size: 1em;
+        }
+
+        .contact-form input[type="text"]::placeholder,
+        .contact-form input[type="email"]::placeholder,
+        .contact-form textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7); /* Lighter placeholder text */
+        }
+
+        .contact-form input[type="text"]:focus,
+        .contact-form input[type="email"]:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: #a000a0; /* Highlight on focus */
+            box-shadow: 0 0 8px rgba(160, 0, 160, 0.5);
+        }
+
+        .contact-form textarea {
+            resize: vertical; /* Allow vertical resizing */
+            min-height: 120px;
+        }
+
+        .contact-form button {
+            background-color: #800080;
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            align-self: flex-start; /* Align button to the left */
+        }
+
+        .contact-form button:hover {
+            background-color: #a000a0;
+            transform: translateY(-2px);
+        }
+
+        /* Map/Location Styling */
+        .location iframe {
+            width: 100%;
+            height: 350px;
+            border: 0;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Footer Styling (basic, no navigation) */
+        footer {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 20px 30px;
+            margin-top: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            flex-shrink: 0;
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.7);
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <a href="home.html" class="logo-link">
+            <img src="Child protection.png" alt="Child Protection Logo">
+        </a>
+        <nav class="main-nav">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Child</a>
+            <a href="allocation.html">Allocation</a>
+            <a href="contacts.html">Contacts</a>
+        </nav>
+    </header>
+
+    <main class="contact-content">
+        <h1>Get in Touch with Us</h1>
+
+        <div class="contact-info">
+            <h2>Contact Information</h2>
+            <p>We're here to answer your questions and provide support. Please reach out to us using the details below:</p>
+            <p><strong>Email:</strong> <a href="https://myaccount.google.com/?hl=en&utm_source=OGB&utm_medium=act&gar=WzJd&pli=1">child protectio.org</a></p>
+            <p><strong>Phone:</strong> <a href="tel:+1234567890">+1 (234) 567-890</a></p>
+            <p><strong>Address:</strong> 123 Child Rights Avenue, Suite 456, Arusha, Tanzania</p>
+            <p><strong>Office Hours:</strong> Monday - Friday, 9:00 AM - 5:00 PM EAT</p>
+        </div>
+
+        <div class="contact-form">
+            <h2>Send Us a Message</h2>
+            <p>Have a question, suggestion, or just want to say hello? Use the form below, and we'll get back to you as soon as possible.</p>
+            <form action="#" method="POST">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" required placeholder="Enter your full name">
+
+                <label for="email">Your Email:</label>
+                <input type="email" id="email" name="email" required placeholder="Enter your email address">
+
+                <label for="subject">Subject:</label>
+                <input type="text" id="subject" name="subject" placeholder="What's your message about?">
+
+                <label for="message">Your Message:</label>
+                <textarea id="message" name="message" required placeholder="Type your message here..."></textarea>
+
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+
+        <div class="location">
+            <h2>Our Location</h2>
+            <p>Find us on the map:</p>
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15873.743026362846!2d36.67101835!3d-3.3768235!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x18371981254399e7%3A0xc0fb10c5c363f538!2sArusha%2C%20Arusha%20Region!5e0!3m2!1sen!2stz!4v1700000000000!5m2!1sen!2stz"
+                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+            <p style="margin-top: 10px;">We are located in the heart of Arusha, Tanzania, working closely with local communities.</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Child Protection & Rights. All rights reserved in Edmund Rice school.</p>
+    </footer>
+
+</body>
+</html>
