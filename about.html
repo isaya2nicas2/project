@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Child Protection</title>
+    <style>
+        /* Re-use your main styling for consistency */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: black;
+            background-image: linear-gradient(to right, black, rgb(97, 163, 216), #800080, pink);
+            font-family: Arial, sans-serif;
+            color: #fff;
+            /* Adjust margin-top to account for the fixed header */
+            margin-top: 100px; /* Assuming your header height is around 100px */
+        }
+
+        /* Header Styling (copy from your main page) */
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background-color: rgba(0, 0, 0, 0.4);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .logo-link img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #fff;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .logo-link img:hover {
+            transform: scale(1.05);
+        }
+
+        .main-nav {
+            display: flex;
+            gap: 50px; /* Increased gap for all links in the header */
+        }
+
+        .main-nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1em;
+            padding: 10px 20px;
+            border-radius: 8px;
+            background-color: #800080;
+            position: relative;
+            overflow: hidden;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .main-nav a:hover {
+            background-color: #a000a0;
+            transform: translateY(-2px);
+        }
+
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 3px;
+            background-color: white;
+            transition: width 0.3s ease-out;
+        }
+
+        .main-nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Main Content Styling for About Page */
+        .about-content {
+            flex-grow: 1; /* Pushes footer down (if present) or just expands */
+            padding: 40px;
+            max-width: 900px; /* Limit content width for readability */
+            margin: 0 auto; /* Center the content block */
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for the content area */
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            line-height: 1.6; /* Improve readability */
+        }
+
+        .about-content h1 {
+            font-size: 3.5em;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #fff;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        .about-content h2 {
+            font-size: 2em;
+            color: #a000a0; /* Purple accent for subheadings */
+            margin-top: 40px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #a000a0;
+            padding-bottom: 5px;
+        }
+
+        .about-content p {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+
+        .about-content ul {
+            list-style: disc inside;
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+
+        .about-content ul li {
+            margin-bottom: 10px;
+        }
+
+        /* Footer Styling - REMOVED footer navigation, keeping just a basic footer */
+        footer {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 20px 30px;
+            margin-top: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            flex-shrink: 0;
+        }
+
+        /* Footer nav styling no longer relevant for navigation links */
+        /* You can remove the .footer-nav rule if you remove the footer entirely */
+        .footer-nav {
+            display: flex; /* Still flex if you have multiple items like copyright + social */
+            gap: 30px;
+        }
+
+        .footer-nav a { /* This can be removed if there are no links in footer */
+            color: #fff;
+            text-decoration: none;
+            font-size: 1em;
+            padding: 8px 15px;
+            border-radius: 5px;
+            background-color: #800080;
+            transition: background-color 0.3s ease;
+        }
+
+        .footer-nav a:hover {
+            background-color: #a000a0;
+        }
+
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <a href="home.html" class="logo-link">
+            <img src="Child protection.png" alt="Child Protection Logo">
+        </a>
+        <nav class="main-nav">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Child</a>
+            <a href="allocation.html">Allocation</a>
+            <a href="contacts.html">Contacts</a>
+        </nav>
+    </header>
+
+    <main class="about-content">
+        <h1>About Child Protection & Rights</h1>
+
+        <p>Welcome to our "About Us" page. We are dedicated to safeguarding the well-being and promoting the inherent rights of every child. Our mission is to create a world where children are free from harm, neglect, and exploitation, and where they can grow, learn, and thrive in a safe and supportive environment.</p>
+
+        <h2>Our Mission</h2>
+        <p>To advocate for, protect, and empower children by implementing comprehensive programs and policies that ensure their safety, education, health, and participation in society.</p>
+
+        <h2>Our Vision</h2>
+        <p>A society where every child is valued, respected, and their rights are fully realized, enabling them to reach their full potential and contribute positively to their communities.</p>
+
+        <h2>What We Do</h2>
+        <ul>
+            <li>**Advocacy:** Lobbying for stronger child protection laws and policies.</li>
+            <li>**Support Services:** Providing direct assistance, counseling, and shelter for children in crisis.</li>
+            <li>**Education:** Raising awareness about child rights and protection issues in communities and schools.</li>
+            <li>**Capacity Building:** Training parents, caregivers, and community leaders on child safeguarding practices.</li>
+            <li>**Partnerships:** Collaborating with local and international organizations to amplify our impact.</li>
+        </ul>
+
+        <h2>Our Values</h2>
+        <p>Our work is guided by a set of core values that reflect our commitment to children:</p>
+        <ul>
+            <li>**Child-Centered:** Placing the needs and best interests of the child at the forefront of all our actions.</li>
+            <li>**Integrity:** Upholding honesty, transparency, and accountability in our operations.</li>
+            <li>**Compassion:** Approaching our work with empathy, understanding, and kindness.</li>
+            <li>**Empowerment:** Fostering resilience and self-reliance in children and communities.</li>
+            <li>**Collaboration:** Working together with all stakeholders to achieve common goals.</li>
+        </ul>
+
+        <h2>Our Impact</h2>
+        <p>Since our inception, we have positively impacted thousands of children through our various initiatives. We believe that by protecting children today, we are building a stronger, more just, and equitable future for all.</p>
+
+        <p>Thank you for your interest in our work. Together, we can make a difference in the lives of vulnerable children.</p>
+    </main>
+
+    <footer>
+        </footer>
+
+</body>
+</html>
