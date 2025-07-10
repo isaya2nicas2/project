@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Child Protection & Rights</title>
+    <style>
+        /* Universal Box-Sizing for easier layout */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box; /* Important for consistent sizing */
+        }
+
+        body {
+            min-height: 100vh; /* Ensures content fills viewport even if short */
+            display: flex;
+            flex-direction: column;
+            background-color: black;
+            background-image: linear-gradient(to right, black, rgb(97, 163, 216), #800080, pink);
+            font-family: Arial, sans-serif; /* A more common and readable default font */
+            color: #fff; /* Default text color */
+            margin-top: 100px; /* Adjust based on your header's height (15px + 70px + 15px padding/logo) */
+        }
+
+        /* Header Styling - Uses Flexbox for layout */
+        .main-header {
+            display: flex; /* Enables flex container behavior */
+            justify-content: space-between; /* Pushes logo to left, nav to right */
+            align-items: center; /* Vertically centers items */
+            padding: 15px 30px; /* Padding inside the header */
+            background-color: rgba(0, 0, 0, 0.4); /* Slightly transparent background for the header */
+
+            /* Make the header fixed */
+            position: fixed; /* Stays in the viewport */
+            top: 0;          /* Aligns to the top */
+            left: 0;         /* Aligns to the left */
+            width: 100%;     /* Spans full width */
+            z-index: 1000;   /* Ensures it's on top of other content */
+        }
+
+        /* Logo Image Styling */
+        .logo-link img {
+            width: 70px; /* Set a fixed width for the logo */
+            height: 70px; /* Set a fixed height for the logo */
+            border-radius: 50%; /* Makes the image perfectly round */
+            object-fit: cover; /* Ensures the image covers the area without distortion */
+            border: 2px solid #fff; /* Optional: A small white white border around the logo */
+            transition: transform 0.3s ease-in-out; /* Smooth hover effect */
+        }
+
+        .logo-link img:hover {
+            transform: scale(1.05); /* Slightly enlarge logo on hover */
+        }
+
+        /* Navigation Links Styling (for main header) */
+        .main-nav {
+            display: flex; /* Enables flex container for navigation links */
+            gap: 50px; /* Increased gap to make links less closer - adjust as needed */
+        }
+
+        .main-nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1em; /* Adjust font size relative to parent */
+            padding: 10px 20px; /* Padding for clickable area */
+            border-radius: 8px; /* Slightly rounded corners for buttons */
+            background-color: #800080; /* Background for nav items */
+            position: relative; /* Needed for positioning the ::after pseudo-element */
+            overflow: hidden; /* Ensures the line doesn't extend beyond the link's bounds initially */
+            transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions for background/lift */
+        }
+
+        .main-nav a:hover {
+            background-color: #a000a0; /* Darker purple on hover */
+            transform: translateY(-2px); /* Slight lift effect on hover */
+        }
+
+        /* Line effect for navigation links */
+        .main-nav a::after {
+            content: ''; /* Required for pseudo-elements */
+            position: absolute; /* Position relative to the parent link */
+            left: 0;
+            bottom: 0; /* Position at the bottom of the link */
+            width: 0; /* Start with no width */
+            height: 3px; /* Thickness of the line */
+            background-color: white; /* Color of the line */
+            transition: width 0.3s ease-out; /* Animate the width */
+        }
+
+        .main-nav a:hover::after {
+            width: 100%; /* Expand to full width on hover */
+        }
+
+
+        /* Main Heading Styling */
+        h1 {
+            color: #fff;
+            font-style: normal;
+            text-align: center;
+            font-size: 70px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Add a subtle text shadow */
+            margin-bottom: 50px; /* Add some space below the h1 */
+            margin-top: 50px; /* Add some space above the h1, especially if it's the first element */
+            line-height: 1.2; /* Improve readability for multi-line headings */
+        }
+
+        span {
+            color: #040405; /* Black text for the span */
+        }
+
+        /* Main content area */
+        .content-area {
+            flex-grow: 1; /* Still good for ensuring content takes available space */
+            display: flex; /* Use flexbox for layout of its direct children (h1, image-gallery, developer-info) */
+            flex-direction: column; /* Stack items vertically by default */
+            justify-content: center; /* Center content vertically within this area */
+            align-items: center; /* Center content horizontally within this area */
+            padding: 20px; /* Add some padding */
+        }
+
+        /* Styles for the image gallery container */
+        .image-gallery {
+            display: flex;
+            flex-direction: column; /* Default to stacking images vertically */
+            gap: 30px; /* Space between images when stacked */
+            margin-top: 30px; /* Space above the image gallery, separating it from the h1 */
+            width: 100%; /* Ensure gallery takes full width of its parent */
+            align-items: center; /* Center images horizontally within the gallery */
+        }
+
+        /* Styles for the images within content-area */
+        .content-area img {
+            width: 80%; /* Make images responsive to container width */
+            max-width: 600px; /* Set a maximum width for larger screens */
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 15px; /* Slightly rounded corners for a softer look */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5), /* Stronger shadow for depth */
+                        0 6px 6px rgba(0, 0, 0, 0.3);
+            object-fit: cover; /* Ensures images cover their area without distortion */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth hover effects */
+            border: 3px solid rgba(255, 255, 255, 0.3); /* Subtle white border */
+        }
+
+        .content-area img:hover {
+            transform: scale(1.02); /* Slightly enlarge image on hover */
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6), /* Deeper shadow on hover */
+                        0 8px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        /* New: Developer Info Styling */
+        .developer-info {
+            margin-top: 50px; /* Space above the developer name, separating it from the images */
+            text-align: center; /* Center the text */
+            font-size: 1.2em; /* Make the text a bit larger */
+            color: rgba(255, 255, 255, 0.8); /* Slightly less bright white for subtlety */
+            padding: 15px 30px; /* Some padding around the text */
+            background-color: rgba(0, 0, 0, 0.3); /* Subtle dark background */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4); /* A light shadow */
+            max-width: 800px; /* Limit its width on very wide screens */
+            width: 90%; /* Take up most of the available width */
+        }
+
+        .developer-info span {
+            font-weight: bold; /* Make the name bold */
+            color: #fff; /* Ensure the name itself is bright white */
+        }
+
+        /* Footer Styling - REMOVED for navigation, only keep if you want other footer content */
+        footer {
+            background-color: rgba(0, 0, 0, 0.6); /* Darker background for footer */
+            padding: 20px 30px;
+            margin-top: auto; /* Pushes the footer to the bottom if body is flex column */
+            display: flex;
+            justify-content: center; /* Center content in the footer */
+            align-items: center;
+            width: 100%;
+            flex-shrink: 0; /* Prevents shrinking */
+        }
+
+        /* ========================================= */
+        /* Responsive Adjustments for Mobile Devices */
+        /* ========================================= */
+
+        @media (max-width: 767px) { /* Styles applied to screens 767px wide or narrower (typical smartphone portrait) */
+            body {
+                margin-top: 80px; /* Slightly less margin for smaller screens to save vertical space */
+            }
+
+            .main-header {
+                padding: 10px 15px; /* Reduce header padding on small screens */
+                flex-direction: column; /* Stack logo and nav vertically */
+                align-items: center; /* Center items when stacked */
+                gap: 10px; /* Space between logo and stacked nav */
+            }
+
+            .logo-link img {
+                width: 50px; /* Slightly smaller logo for mobile */
+                height: 50px;
+            }
+
+            .main-nav {
+                flex-direction: column; /* Stack nav links vertically */
+                gap: 8px; /* Reduce gap between stacked nav links */
+                width: 100%; /* Make nav take full width to center links */
+                align-items: center; /* Center nav links horizontally when stacked */
+            }
+
+            .main-nav a {
+                font-size: 0.95em; /* Slightly smaller font size for nav links */
+                padding: 8px 12px; /* Reduce padding for nav buttons */
+                width: 80%; /* Make buttons take more width for easier tapping */
+                text-align: center; /* Center text within the button */
+            }
+
+            h1 {
+                font-size: 2.2em; /* Significantly reduce heading size for mobile */
+                margin-top: 25px; /* Adjust top margin for mobile h1 */
+                margin-bottom: 25px; /* Adjust bottom margin for mobile h1 */
+                padding: 0 10px; /* Add some horizontal padding to prevent text from touching edges */
+            }
+
+            .content-area {
+                padding: 15px; /* Reduce overall padding for content area on mobile */
+            }
+
+            .image-gallery {
+                margin-top: 20px; /* Reduce margin for image gallery on mobile */
+                gap: 20px; /* Reduce gap between images on mobile */
+            }
+
+            .content-area img {
+                width: 95%; /* Make images almost full width on mobile for better visibility */
+                max-width: none; /* Remove max-width constraint for mobile so it scales fully */
+                height: auto; /* Ensure aspect ratio is maintained */
+                border-radius: 10px; /* Slightly smaller border-radius for mobile */
+            }
+
+            .developer-info {
+                font-size: 0.85em; /* Smaller font for developer info */
+                padding: 10px 15px; /* Smaller padding */
+                margin-top: 30px; /* Smaller top margin */
+                width: 95%; /* Almost full width */
+            }
+        }
+
+        /* Optional: Make images display in a row on larger screens */
+        @media (min-width: 768px) {
+            .image-gallery {
+                flex-direction: row; /* Arrange images in a row */
+                flex-wrap: wrap; /* Allow images to wrap to the next line if too many */
+                justify-content: center; /* Center them horizontally */
+                align-items: flex-start; /* Align items to the top (optional, can be center) */
+                gap: 40px; /* Space between images in a row */
+            }
+
+            .content-area img {
+                width: calc(33% - 40px); /* Roughly one-third width for three images, accounting for gap */
+                max-width: 350px; /* Control max width per image */
+                height: 250px; /* Fixed height for consistent look in a row */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <a href="home.html" class="logo-link">
+            <img src="Child protection.png" alt="Child Protection Logo">
+        </a>
+        <nav class="main-nav">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Child</a>
+            <a href="allocation.html">Allocation</a>
+            <a href="contacts.html">Contacts</a>
+        </nav>
+    </header>
+
+    <div class="content-area">
+        <h1>Child <span>protection</span><br>/child <span>rights</span></h1>
+
+        <div class="image-gallery">
+            <img src="child1.jpeg" alt="A child smiling and playing">
+            <img src="child2.jpeg" alt="A child drawing or coloring">
+            <img src="child3.jpeg" alt="A group of children interacting positively">
+        </div>
+
+        <div class="developer-info">
+            Developed with dedication by <span>[Your Name Here]</span>
+        </div>
+    </div>
+
+    <footer>
+    </footer>
+
+</body>
+</html>
